@@ -43,14 +43,13 @@ generate their output files.
 
 """
 
-from __future__ import print_function
-
 import os
 import subprocess
 import jinja2
 import arrow
 import numpy
-import inspect
+
+from tendril.utils.fsutils import get_namespace_package_locations
 
 from tendril.utils.config import DOX_TEMPLATE_FOLDER
 from tendril.utils.config import COMPANY_LOGO_PATH
@@ -153,15 +152,13 @@ def jinja2_pdfinit():
     :return: The jinja2 Environment.
 
     """
-    dox_path = os.path.split(
-        os.path.abspath(inspect.getfile(inspect.currentframe()))
-    )[0]
+    packages = get_namespace_package_locations('tendril.dox')
+    template_paths = [DOX_TEMPLATE_FOLDER] + \
+                     [os.path.join(p, 'templates') for p in packages]
 
-    loader = jinja2.FileSystemLoader(
-        [DOX_TEMPLATE_FOLDER,
-         os.path.join(dox_path, 'templates')]
-    )
-    print(loader)
+    logger.info("Using template paths : {0}".format(template_paths))
+    loader = jinja2.FileSystemLoader(template_paths)
+
     renderer = jinja2.Environment(block_start_string='%{',
                                   block_end_string='%}',
                                   variable_start_string='%{{',
