@@ -70,6 +70,8 @@ from tendril.utils import log
 logger = log.get_logger(__name__, log.INFO)
 FNULL = open(os.devnull, 'w')
 
+__version__ = '0.1.2'
+
 
 def format_currency(value):
     """

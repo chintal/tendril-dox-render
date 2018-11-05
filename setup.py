@@ -14,8 +14,8 @@ with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    'tendril-utils-core',
-    'tendril-utils-types',
+    'tendril-utils-core>=0.1.4',
+    'tendril-utils-types>=0.1.2',
     'fs==0.5.4',
     'jinja2',
     'arrow',
@@ -29,7 +29,7 @@ test_requirements = [
 
 setup(
     name='tendril-dox-render',
-    version='0.1.1',
+    version='0.1.2',
     description="Core document rendering primitives for tendril",
     long_description=readme,
     author="Chintalagiri Shashank",
