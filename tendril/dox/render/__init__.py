@@ -159,7 +159,7 @@ def jinja2_pdfinit():
     template_paths = [DOX_TEMPLATE_FOLDER] + \
                      [os.path.join(p, 'templates') for p in packages]
 
-    logger.info("Using template paths : {0}".format(template_paths))
+    logger.debug("Using template paths : {0}".format(template_paths))
     loader = jinja2.FileSystemLoader(template_paths)
 
     renderer = jinja2.Environment(block_start_string='%{',
