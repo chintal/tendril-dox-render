@@ -29,7 +29,7 @@ test_requirements = [
 
 setup(
     name='tendril-dox-render',
-    version='0.1.2',
+    version='0.1.3',
     description="Core document rendering primitives for tendril",
     long_description=readme,
     author="Chintalagiri Shashank",

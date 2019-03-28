@@ -62,12 +62,13 @@ from tendril.utils.colors import tableau20
 from tendril.utils.types.unitbase import NumericalUnitBase
 from decimal import Decimal
 
+from tendril.utils import log
+logger = log.get_logger(__name__, log.INFO)
+
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot
 
-from tendril.utils import log
-logger = log.get_logger(__name__, log.INFO)
 FNULL = open(os.devnull, 'w')
 
 __version__ = '0.1.2'
