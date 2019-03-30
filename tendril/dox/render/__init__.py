@@ -51,12 +51,12 @@ import numpy
 
 from tendril.utils.fsutils import get_namespace_package_locations
 
-from tendril.utils.config import DOX_TEMPLATE_FOLDER
-from tendril.utils.config import COMPANY_LOGO_PATH
-from tendril.utils.config import COMPANY_NAME
-from tendril.utils.config import COMPANY_EMAIL
-from tendril.utils.config import COMPANY_ADDRESS_LINE
-from tendril.utils.config import COMPANY_IEC
+from tendril.config.legacy import DOX_TEMPLATE_FOLDER
+from tendril.config.legacy import COMPANY_LOGO_PATH
+from tendril.config.legacy import COMPANY_NAME
+from tendril.config.legacy import COMPANY_EMAIL
+from tendril.config.legacy import COMPANY_ADDRESS_LINE
+from tendril.config.legacy import COMPANY_IEC
 
 from tendril.utils.colors import tableau20
 from tendril.utils.types.unitbase import NumericalUnitBase
@@ -139,7 +139,7 @@ def jinja2_pdfinit():
     .. rubric:: Loader
 
     :class:`jinja2.FileSystemLoader`, with it's root at
-    :data:`tendril.utils.config.DOX_TEMPLATE_FOLDER`
+    :data:`tendril.config.legacy.DOX_TEMPLATE_FOLDER`
 
     .. rubric:: Template Markup Strings
 
@@ -213,19 +213,19 @@ def render_pdf(stage, template, outpath, remove_sources=True,
 
         * - ``logo``
           - The company logo, as specified in
-            :data:`tendril.utils.config.COMPANY_LOGO_PATH`
+            :data:`tendril.config.legacy.COMPANY_LOGO_PATH`
         * - ``company``
           - The company name, as specified in
-            :data:`tendril.utils.config.COMPANY_NAME`
+            :data:`tendril.config.legacy.COMPANY_NAME`
         * - ``company_email``
           - The company email address, as specified in
-            :data:`tendril.utils.config.COMPANY_EMAIL`
+            :data:`tendril.config.legacy.COMPANY_EMAIL`
         * - ``company_address_line``
           - The company address, as specified in
-            :data:`tendril.utils.config.COMPANY_ADDRESS_LINE`
+            :data:`tendril.config.legacy.COMPANY_ADDRESS_LINE`
         * - ``company_iec``
           - The company IEC, as specified in
-            :data:`tendril.utils.config.COMPANY_IEC`
+            :data:`tendril.config.legacy.COMPANY_IEC`
         * - ``render_ts``
           - The current timestamp
 
