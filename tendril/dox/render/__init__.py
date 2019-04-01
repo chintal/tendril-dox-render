@@ -51,7 +51,7 @@ import numpy
 
 from tendril.utils.fsutils import get_namespace_package_locations
 
-from tendril.config.legacy import DOX_TEMPLATE_FOLDER
+from tendril.config import DOX_TEMPLATE_FOLDER
 from tendril.config.legacy import COMPANY_LOGO_PATH
 from tendril.config.legacy import COMPANY_NAME
 from tendril.config.legacy import COMPANY_EMAIL
@@ -139,7 +139,7 @@ def jinja2_pdfinit():
     .. rubric:: Loader
 
     :class:`jinja2.FileSystemLoader`, with it's root at
-    :data:`tendril.config.legacy.DOX_TEMPLATE_FOLDER`
+    :data:`tendril.config.DOX_TEMPLATE_FOLDER`
 
     .. rubric:: Template Markup Strings
 
