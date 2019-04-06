@@ -114,6 +114,7 @@ def escape_latex(string, aggressive=True):
         string = string.replace('%', '\%')
         string = string.replace('&', '\&')
         string = string.replace('_', '\_')
+        string = string.replace('₹', '\\rupee~')
         string = string.replace('INR ', '\\rupee~')
         if aggressive is True:
             string = string.replace('--', '-{}-')
