@@ -48,19 +48,16 @@ import subprocess
 import jinja2
 import arrow
 import numpy
+from six import iteritems
+from decimal import Decimal
 
 from tendril.utils.fsutils import get_namespace_package_locations
 
 from tendril.config import DOX_TEMPLATE_FOLDER
-from tendril.config.legacy import COMPANY_LOGO_PATH
-from tendril.config.legacy import COMPANY_NAME
-from tendril.config.legacy import COMPANY_EMAIL
-from tendril.config.legacy import COMPANY_ADDRESS_LINE
-from tendril.config.legacy import COMPANY_IEC
+from tendril.identity import primary_persona
 
 from tendril.utils.colors import tableau20
 from tendril.utils.types.unitbase import NumericalUnitBase
-from decimal import Decimal
 
 from tendril.utils import log
 logger = log.get_logger(__name__, log.INFO)
@@ -181,7 +178,7 @@ renderer_pdf = jinja2_pdfinit()
 
 
 def render_pdf(stage, template, outpath, remove_sources=True,
-               verbose=True, **kwargs):
+               persona=None, verbose=True, **kwargs):
     """
     Render the latex output and convert it into pdf using ``pdflatex``.
 
@@ -239,12 +236,15 @@ def render_pdf(stage, template, outpath, remove_sources=True,
     #     raise ValueError
     template = renderer_pdf.get_template(template)
 
-    stage['logo'] = COMPANY_LOGO_PATH
-    stage['company'] = COMPANY_NAME
-    stage['company_email'] = COMPANY_EMAIL
-    stage['company_address_line'] = COMPANY_ADDRESS_LINE
-    stage['company_iec'] = COMPANY_IEC
+    stage['persona'] = persona or primary_persona
     stage['render_ts'] = arrow.utcnow().isoformat()
+
+    # Legacy support
+    stage['logo'] = stage['persona'].logo_path
+    stage['company'] = stage['persona'].name
+    stage['company_email'] = stage['persona'].email
+    stage['company_address_line'] = stage['persona'].address_line
+    stage['company_iec'] = stage['persona'].iec
 
     texpath = os.path.splitext(outpath)[0] + ".tex"
     with open(texpath, "wb") as f:
@@ -297,8 +297,8 @@ def render_lineplot(outf, plotdata, title, note):
     curvenames = []
     ylists = []
     xlists = []
-    for x, y in plotdata.iteritems():
-        for name, value in y.iteritems():
+    for x, y in iteritems(plotdata):
+        for name, value in iteritems(y):
             if name not in curvenames:
                 curvenames.append(name)
                 xlists.append([])
@@ -444,7 +444,7 @@ def get_optimum_bins(plotdata_y):
     c = numpy.zeros(shape=(numpy.size(d), 1))
 
     # Computation of the cost function
-    for i in xrange(numpy.size(n)):
+    for i in range(numpy.size(n)):
         edges = numpy.linspace(min_p, max_p, n[i]+1)  # Bin edges
         ki = pyplot.hist(plotdata_y, edges)     # Count # of events in bins
         ki = ki[0]
