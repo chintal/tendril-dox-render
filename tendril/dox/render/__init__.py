@@ -221,15 +221,15 @@ def render_pdf(stage, template, outpath, remove_sources=True,
     #     raise ValueError
     template = renderer_pdf.get_template(template)
 
-    stage['persona'] = persona or primary_persona
+    stage.setdefault('persona', persona or primary_persona)
     stage['render_ts'] = arrow.utcnow().isoformat()
 
     # Legacy support
-    stage['logo'] = stage['persona'].logo_path
-    stage['company'] = stage['persona'].name
-    stage['company_email'] = stage['persona'].email
-    stage['company_address_line'] = stage['persona'].address_line
-    stage['company_iec'] = stage['persona'].iec
+    stage.setdefault('logo', stage['persona'].logo)
+    stage.setdefault('company', stage['persona'].name)
+    stage.setdefault('company_email', stage['persona'].email)
+    stage.setdefault('company_address_line', stage['persona'].address_line)
+    stage.setdefault('company_iec', stage['persona'].iec)
 
     texpath = os.path.splitext(outpath)[0] + ".tex"
     with open(texpath, "wb") as f:
