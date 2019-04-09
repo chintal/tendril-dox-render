@@ -209,21 +209,6 @@ def render_pdf(stage, template, outpath, remove_sources=True,
     .. rubric:: Stage Keys Provided
     .. list-table::
 
-        * - ``logo``
-          - The company logo, as specified in
-            :data:`tendril.config.legacy.COMPANY_LOGO_PATH`
-        * - ``company``
-          - The company name, as specified in
-            :data:`tendril.config.legacy.COMPANY_NAME`
-        * - ``company_email``
-          - The company email address, as specified in
-            :data:`tendril.config.legacy.COMPANY_EMAIL`
-        * - ``company_address_line``
-          - The company address, as specified in
-            :data:`tendril.config.legacy.COMPANY_ADDRESS_LINE`
-        * - ``company_iec``
-          - The company IEC, as specified in
-            :data:`tendril.config.legacy.COMPANY_IEC`
         * - ``render_ts``
           - The current timestamp
 
