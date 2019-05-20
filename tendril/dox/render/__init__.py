@@ -116,8 +116,8 @@ def escape_latex(string, aggressive=True):
         string = string.replace('_', '\_')
         string = string.replace('₹', '\\rupee~')
         string = string.replace('INR ', '\\rupee~')
-        string = string.replace('°', '\\degree')
-        string = string.replace('±', '\\pm')
+        string = string.replace('°', '\\ensuremath{^{\\circ}}')
+        string = string.replace('±', '$\\pm$')
         if aggressive is True:
             string = string.replace('--', '-{}-')
     else:
