@@ -58,6 +58,7 @@ from tendril.identity import primary_persona
 
 from tendril.utils.colors import tableau20
 from tendril.utils.types.unitbase import NumericalUnitBase
+from tendril.utils.types.currency import CurrencyValue
 
 from tendril.utils import log
 logger = log.get_logger(__name__, log.INFO)
@@ -99,6 +100,8 @@ def escape_latex(string, aggressive=True):
     :return: Latex-safe string
 
     """
+    if isinstance(string, CurrencyValue):
+        string = string.native_string
     if isinstance(string, NumericalUnitBase):
         string = string.quantized_repr
     elif isinstance(string, Decimal):
@@ -113,6 +116,8 @@ def escape_latex(string, aggressive=True):
         string = string.replace('_', '\_')
         string = string.replace('₹', '\\rupee~')
         string = string.replace('INR ', '\\rupee~')
+        string = string.replace('°', '\\degree')
+        string = string.replace('±', '\\pm')
         if aggressive is True:
             string = string.replace('--', '-{}-')
     else:
@@ -233,7 +238,7 @@ def render_pdf(stage, template, outpath, remove_sources=True,
 
     texpath = os.path.splitext(outpath)[0] + ".tex"
     with open(texpath, "wb") as f:
-        f.write(template.render(stage=stage, **kwargs))
+        f.write(template.render(stage=stage, **kwargs).encode('utf-8'))
         f.flush()
 
     auxpath = os.path.splitext(outpath)[0] + ".aux"
