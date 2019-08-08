@@ -54,7 +54,7 @@ from decimal import Decimal
 from tendril.utils.versions import get_namespace_package_locations
 
 from tendril.config import DOX_TEMPLATE_FOLDER
-from tendril.identity import primary_persona
+from tendril.identity.persona import primary_persona
 
 from tendril.utils.colors import tableau20
 from tendril.utils.types.unitbase import NumericalUnitBase
