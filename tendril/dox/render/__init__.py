@@ -51,7 +51,7 @@ import numpy
 from six import iteritems
 from decimal import Decimal
 
-from tendril.utils.fsutils import get_namespace_package_locations
+from tendril.utils.versions import get_namespace_package_locations
 
 from tendril.config import DOX_TEMPLATE_FOLDER
 from tendril.identity import primary_persona
