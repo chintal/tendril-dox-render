@@ -13,10 +13,10 @@ import sys
 import os
 from pkg_resources import get_distribution
 
-_github_repo = 'tendril-dox-wallet'
+_github_repo = 'tendril-dox-render'
 _github_user = 'tendril-framework'
 
-_package_name = u'tendril-dox-wallet'
+_package_name = u'tendril-dox-render'
 _package_author = u'Tendril Framework'
 _package_copyright = u'2015-19'
 _package_logo = '_static/logo.png'

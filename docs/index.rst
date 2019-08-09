@@ -1,6 +1,6 @@
 
-Tendril Document Wallet
-=======================
+Tendril Document Rendering Primitives
+=====================================
 
 .. include:: ../README.rst
     :start-after: inclusion-marker-do-not-remove
@@ -24,7 +24,7 @@ Tendril Document Wallet
 
             \vspace{-1.5em}
 
-        ``tendril-dox-wallet`` is part of the tendril framework for the management of engineering information
+        ``tendril-dox-render`` is part of the tendril framework for the management of engineering information
 
 .. raw:: latex
 
